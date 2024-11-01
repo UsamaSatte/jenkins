@@ -1,0 +1,36 @@
+1. ssh -i devops4 usama@10.128.0.8
+
+2. Jenkins Home Directory
+
+/home/janak/jenkins
+
+3. Install JAVA
+
+sudo apt-get update
+sudo apt install openjdk-17-jdk
+
+4. Download Slave.jar to run jenkins as a slave
+
+mkdir bin
+cd bin 
+wget http://your_jenkins_ip_address:8080/jnlpJars/slave.jar
+
+slave.jar file path: /home/usama/jenkins/bin/slave.jar
+
+=> Install plugin: Command Agent Launcher
+
+5. Create Slave using Jenkins UI
+
+manage Jenkins -> Nodes
+
+ssh -i devops4 usama@10.28.0.8 java -jar /home/usama/bin/slave.jar
+
+After Adding Agent move to in-process script approval
+
+
+
+Master -> use this node as possible -> 1
+javaprojects -> where lable match 
+
+
+http://34.27.52.154/index.txt

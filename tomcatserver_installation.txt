@@ -1,0 +1,48 @@
+Installation
+--------------
+
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.95/bin/apache-tomcat-9.0.95.tar.gz
+tar -xzvf apache-tomcat-9.0.95.tar.gz
+cd apache-tomcat-9.0.95/conf
+
+In server.xml file change the port from 8080 to 8090 as our Jenkins is running on port 8080. 
+
+<Connector port="8090" protocol="HTTP/1.1"
+
+Start the Tomcat service
+
+cd ../bin/
+./startup.sh
+
+(Check website using port 8090)
+
+
+
+Configure Credentials
+--------------------
+
+Open the file tomcat-users.xml in conf folder
+
+Add below two lines at last
+
+  <user username="usama" password="jenkins" roles="manager-gui"/>
+  <user username="jenkinsscript" password="jenkins" roles="manager-script"/>
+</tomcat-users>
+
+
+Stop and start the service and check if you can open the page.
+
+Let's see the reason
+
+
+Open file below
+
+webapps/manager/META-INF/context.xml
+
+comment below line
+
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+
+stop and start service
